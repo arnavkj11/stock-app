@@ -18,6 +18,12 @@ def get_data(tickers):
     data = yf.download(tickers, period=time_frame)
     return data['Close']
 
+def get_data_change(tickers, time_frame):
+    data = yf.download(tickers, period=time_frame)['Close']
+    # Calculate percent return
+    percent_return = data.pct_change().fillna(0)
+    return percent_return
+
 # Streamlit page configuration
 st.set_page_config(page_title="US Market Analysis: Dow Jones Index", layout="wide", initial_sidebar_state="collapsed")
 
@@ -90,21 +96,27 @@ sectors = {
 }
 # Dropdown to select the sector
 sector = st.selectbox('Select a sector:', list(sectors.keys()))
-time_frame = st.selectbox('Select Time Frame', ['1y', '3d', '1mo', '3mo', '6mo', '3y', '5y'])
+time_frame = st.selectbox('Select Time Frame', ['1d', '3d', '7d', '1mo', '3mo', '6mo', '1y', '3y', '5y'])
 
 # Get ticker symbols for the selected sector
 tickers = sectors[sector]
 
 # Fetch data
 data = get_data(tickers)
+data_change = get_data_change(tickers, time_frame)
 
 # Plotting the line chart
 if sector == 'Energy' or sector == 'Communication' or sector == 'Entertainment':
     fig = px.line(data, x=data.index, y='Close', labels={'value': 'Stock Price', 'variable': 'Company'})
+    fig.update_layout(title=f'{sector} Sector Comparison')
+    st.plotly_chart(fig, use_container_width=True)
 else:
     fig = px.line(data, x=data.index, y=data.columns, labels={'value': 'Stock Price', 'variable': 'Company'})
-fig.update_layout(title=f'{sector} Sector Comparison')
-st.plotly_chart(fig, use_container_width=True)
+    fig.update_layout(title=f'{sector} Sector Comparison')
+    st.plotly_chart(fig, use_container_width=True)
+    fig2 = px.line(data_change, x=data.index, y=data.columns, labels={'value': 'Percent Return', 'variable': 'Company'})
+    fig2.update_layout(title=f'{sector} Sector % Return Comparison')
+    st.plotly_chart(fig2, use_container_width=True)
 
 #stock market dashboard
 st.subheader("Stock Market Dashboard")
