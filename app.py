@@ -48,7 +48,7 @@ st.plotly_chart(fig, use_container_width=True)
 st.subheader("Moving Average Plot for Dow Jones Companies")
 
 company_list = [
-    "AAPL", "AXP", "AMGM", "BA", "CAT", "CSCO", "CVX", "CRM", "DIS", "DOW", "GS", "HD", 
+    "AAPL", "AXP", "AMGN", "BA", "CAT", "CSCO", "CVX", "CRM", "DIS", "DOW", "GS", "HD", 
     "HON", "IBM", "INTC", "JNJ", "JPM", "KO", "MCD", "MMM", "MRK", "MSFT", "NKE", 
     "PG", "TRV", "UNH", "V", "VZ", "WBA", "WMT"
 ]
@@ -80,7 +80,7 @@ st.subheader("Sectorial Comparision")
 
 sectors = {
     'Information Technology': ['AAPL', 'CRM', 'CSCO', 'IBM', 'INTC', 'MSFT', 'V'],
-    'Healthcare': ['AMGM', 'JNJ', 'MRK', 'UNH'],
+    'Healthcare': ['AMGN', 'JNJ', 'MRK', 'UNH'],
     'Financials': ['AXP', 'GS', 'JPM', 'TRV'],
     'Industrial': ['MMM', 'BA', 'CAT', 'DOW', 'HON', 'RTX'],
     'Consumer': ['KO', 'HD', 'MCD', 'NKE', 'PG', 'WBA', 'WMT'],
