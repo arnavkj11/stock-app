@@ -55,7 +55,7 @@ df_tm = pd.read_excel('Dows_Jone_Companies_List.xlsx')
 
 # Treemap Plot
 fig = px.treemap(df_tm, path=['sector', 'ticker'], values='marketcap', 
-                 color='delta', hover_data={'marketcap': False, 'delta': False},
+                 color='marketcap', hover_data={'marketcap': False, 'delta': False},
                  custom_data=['ticker', 'sector', 'marketcap', 'delta'], 
                  color_continuous_scale='RdYlGn',
                  title="Treemap of Companies in the Dow Jones Index")
