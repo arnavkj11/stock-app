@@ -9,6 +9,7 @@ import plotly.express as px
 def get_stock_data(ticker, start_date, end_date):
     stock_data = yf.download(ticker, start=start_date, end=end_date)
     return stock_data
+
 # Function to calculate moving averages
 def calculate_moving_averages(df, days):
     return df['Close'].rolling(window=days).mean()
@@ -31,26 +32,49 @@ st.set_page_config(page_title="US Market Analysis: Dow Jones Index", layout="wid
 st.header("US Stock Market Analysis: Dow Jones Index")
 #st.write(" ")
 st.write(" ")
-st.markdown('<div style="text-align: justify; text-justify: inter-word;">The Dow Jones Industrial Average, often simply referred to as the Dow, is one of the most widely recognized and followed stock market indices in the United States. Established in 1896 by Charles Dow and Edward Jones, this index represents a collection of 30 of the largest and most influential publicly traded companies in the United States. These companies, which span various sectors of the economy, are considered bellwethers of the overall health and performance of the U.S. stock market. The Dow Jones Industrial Average is a price-weighted index, which means that the components are weighted based on their stock prices rather than their market capitalization. This unique methodology has been in place since its inception and sets it apart from other major stock market indices, like the S&P 500, which are weighted by market capitalization. As a result, the performance of higher-priced stocks within the Dow has a more significant impact on the index\'s movements.</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">Welcome to the thrilling world of the Dow Jones Industrial Average, where finance meets excitement and Wall Street is the stage! Picture this: a venerable index with a history dating back to 1896, born from the minds of Charles Dow and Edward Jones, titans of the financial realm.</div>', unsafe_allow_html=True)
 
 st.write(" ")
-st.subheader('List of Companies')
+st.subheader('The Dow Dancefloor: Grooving with the Big 30')
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">So, what\'s the Dow all about? It\'s like assembling the Avengers of the stock market - 30 powerhouse companies, flexing their financial muscles in the limelight. These giants, spanning sectors from industrials to healthcare, are the A-listers, the rockstars, and the trendsetters of the U.S. stock market. Their moves? Well, they dictate the rhythm of the market, painting a vivid picture of its overall health and vigor.</div>', unsafe_allow_html=True)
+
+st.write(" ")
+st.subheader('Behind the Scenes: Dow\'s Unique Beat')
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">Now, here\'s where it gets interesting. The Dow Jones Industrial Average isn\'t your run-of-the-mill index; it\'s a maverick. While others play the market cap game, the Dow prefers a different tune. It\'s a "price-weighted" index, meaning the big shots are judged by their stock prices, not their market cap. Imagine a musical where the lead actor\'s salary determines their stage time - that\'s the Dow\'s world. And oh, does it add a dash of suspense to the market saga!</div>', unsafe_allow_html=True)
+
+st.write(" ")
+st.subheader('Curtain Call: Meet the Dow Jones\'s Star-Studded Cast')
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">Let\'s dim the lights and present to you the headliners, the Dow Jones\'s elite ensemble:</div>', unsafe_allow_html=True)
+st.write(" ")
 st.markdown("1. MMM - 3M Company (Industrial)\n 2. AXP - American Express Company (Finance)\n 3. AMGN - Amgen Inc. (Healthcare)\n 4. AAPL - Apple Inc. (Information Technology)\n 5. BA - Boeing Company (Industrial)\n 6. CAT - Caterpillar Inc. (Industrial)\n 7. CVX - Chevron Corporation (Energy)\n 8. CSCO - Cisco Systems, Inc. (Information Technolgy)\n 9. KO - Coca-Cola Company (Consumer)\n 10. DOW - Dow Inc. (Industrial)\n 11. GS - Goldman Sachs Group, Inc. (Finance)\n 12. HD - The Home Depot, Inc. (Consumer)\n 13. HON - Honeywell International Inc. (Industrial)\n 14. IBM - International Business Machines Corporation (Information Technolgy)\n 15. INTC - Intel Corporation (Information Technology)\n 16. JNJ - Johnson & Johnson (Finance)\n 17. JPM - JPMorgan Chase & Co. (Finance)\n 18. MCD - McDonald's Corporation (Consumer)\n 19. MRK - Merck & Co., Inc. (Healthcare)\n 20. MSFT - Microsoft Corporation (Information Technology)\n 21. NKE - Nike, Inc. (Consumer)\n 22. PG - Procter & Gamble Company (Consumer)\n 23. CRM - Salesforce.com, Inc. (Information Technology)\n 24. TRV - The Travelers Companies, Inc. (Finance)\n 25. UHN - UnitedHealth Group Incorporated (Healthcare)\n 26. VZ - Verizon Communications Inc. (Communication)\n 27. V - Visa Inc. (Information Technology)\n 28. WBA - Walgreens Boots Alliance, Inc. (Consumer)\n 29. WMT - Walmart Inc. (Consumer)\n 30. DIS - The Walt Disney Company (Entertainment)")
 
 st.write(" ")
 st.subheader('Market Capitalization by Sector')
 df_tm = pd.read_excel('Dows_Jone_Companies_List.xlsx')
-df_tm['hover_text'] = df_tm.apply(lambda x: f"Ticker: {x['ticker']}<br>Sector: {x['sector']}<br>Price: ${x['price']}<br>Market Cap: ${x['marketcap']}", axis=1)
+#df_tm['hover_text'] = df_tm.apply(lambda x: f"Ticker: {x['ticker']}<br>Sector: {x['sector']}<br>Price: ${x['price']}<br>Market Cap: ${x['marketcap']}", axis=1)
 
 # Treemap Plot
 fig = px.treemap(df_tm, path=['sector', 'ticker'], values='marketcap', 
-                 color='delta', hover_data=['hover_text'],
+                 color='delta', hover_data={'marketcap': False, 'delta': False},
+                 custom_data=['ticker', 'sector', 'marketcap', 'delta'], 
                  color_continuous_scale='RdYlGn',
                  title="Treemap of Companies in the Dow Jones Index")
-
+fig.update_traces(hovertemplate='Company: %{customdata[0]}<br>Sector: %{customdata[1]}<br>Market Cap: %{customdata[2]}<br>Delta: %{customdata[3]}')
 # Display Treemap
 st.plotly_chart(fig, use_container_width=True)
-
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">Welcome to our financial jungle! Picture a digital canopy where sectors are ecosystems. Each sector—IT, Consumer, Healthcare, Financials, Industrial, Energy, Entertainment, Communication—is a distinct realm.</div>', unsafe_allow_html=True)
+st.write(" ")
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>• IT Rainforest:</b> Apple, Cisco, Intel, Microsoft, Visa dominate, visually representing their weightage in tech.</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>• Consumer Meadows:</b> Coca-Cola, McDonald\'s, Nike, P&G, Walmart grace the landscape, their sizes mirroring market impact.</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>• Healthcare Heights:</b> Amgen, J&J, Merck, UnitedHealth tower with significance.</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>• Financial Foothills:</b> American Express, Goldman Sachs, JPMorgan stand tall, their rectangles illustrating economic influence.</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>• Industrial Valleys:</b> Boeing, Caterpillar, Dow Inc. shape the landscape with industrial strength.</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>• Energy Deserts:</b> Chevron stands tall, its rectangle reflecting energy sector significance.</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>• Entertainment Oasis:</b> Disney casts its magical spell in the oasis of entertainment.</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>• Communication Corners:</b> Verizon speaks volumes in the communication sector.</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;"></div>', unsafe_allow_html=True)
+st.write(" ")
+st.write(" ")
 st.subheader("Moving Average Plot for Dow Jones Companies")
 
 company_list = [
@@ -96,7 +120,7 @@ sectors = {
 }
 # Dropdown to select the sector
 sector = st.selectbox('Select a sector:', list(sectors.keys()))
-time_frame = st.selectbox('Select Time Frame', ['1d', '3d', '7d', '1mo', '3mo', '6mo', '1y', '3y', '5y'])
+time_frame = st.selectbox('Select Time Frame', ['1y', '1d', '3d', '7d', '1mo', '3mo', '6mo', '1y', '3y', '5y'])
 
 # Get ticker symbols for the selected sector
 tickers = sectors[sector]
@@ -125,7 +149,7 @@ with st.sidebar:
     selected_sector = st.sidebar.selectbox('Select Sector', list(sectors.keys()))  # Placeholder for sectors
     selected_company = st.sidebar.selectbox('Select Company', sectors[selected_sector])  # List of Dow Jones companies
     chart_type = st.selectbox('Select Chart Type', ['Line Chart', 'Candlestick Chart', 'OHLC Chart'])
-    time_frame = st.selectbox('Select Time Frame', ['1d', '7d', '1mo', '3mo', '6mo', '1y', '3y', '5y'])
+    time_frame = st.selectbox('Select Time Frame', ['1y', '1d', '7d', '1mo', '3mo', '6mo', '1y', '3y', '5y'])
 
 # Fetch historical data from yfinance
 data = yf.download(selected_company, period=time_frame)
