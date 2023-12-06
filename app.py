@@ -120,7 +120,7 @@ sectors = {
 }
 # Dropdown to select the sector
 sector = st.selectbox('Select a sector:', list(sectors.keys()))
-time_frame = st.selectbox('Select Time Frame', ['1y', '1d', '3d', '7d', '1mo', '3mo', '6mo', '1y', '3y', '5y'])
+time_frame = st.selectbox('Select Time Frame', ['7d', '1d', '3d', '7d', '1mo', '3mo', '6mo', '1y', '3y', '5y'])
 
 # Get ticker symbols for the selected sector
 tickers = sectors[sector]
