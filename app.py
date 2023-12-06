@@ -139,7 +139,7 @@ else:
     fig.update_layout(title=f'{sector} Sector Comparison')
     st.plotly_chart(fig, use_container_width=True)
     fig2 = px.line(data_change, x=data.index, y=data.columns, labels={'value': 'Percent Return', 'variable': 'Company'})
-    fig2.update_layout(title=f'{sector} Sector % Return Comparison')
+    fig2.update_layout(title=f'{sector} Sector % Return Comparison', xaxis_title='Date')
     st.plotly_chart(fig2, use_container_width=True)
 
 #stock market dashboard
@@ -174,7 +174,7 @@ elif chart_type == 'OHLC Chart':
 # Update layout of the chart
 fig.update_layout(
     title=f'{selected_company} Share Price ({chart_type})',
-    xaxis_title='Time',
+    xaxis_title='Date',
     yaxis_title='Price (USD)',
     xaxis_rangeslider_visible=False
 )
