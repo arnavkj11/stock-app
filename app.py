@@ -148,7 +148,7 @@ with st.sidebar:
     st.title('Dashboard')
     selected_sector = st.sidebar.selectbox('Select Sector', list(sectors.keys()))  # Placeholder for sectors
     selected_company = st.sidebar.selectbox('Select Company', sectors[selected_sector])  # List of Dow Jones companies
-    chart_type = st.selectbox('Select Chart Type', ['Line Chart', 'Candlestick Chart', 'OHLC Chart'])
+    chart_type = st.selectbox('Select Chart Type', ['Candlestick Chart', 'Line Chart', 'OHLC Chart'])
     time_frame = st.selectbox('Select Time Frame', ['1y', '1d', '7d', '1mo', '3mo', '6mo', '1y', '3y', '5y'])
 
 # Fetch historical data from yfinance
