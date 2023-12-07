@@ -175,8 +175,10 @@ elif chart_type == 'Candlestick Chart':
                                         high=data['High'],
                                         low=data['Low'],
                                         close=data['Close'],
-                                        increasing=dict(line=dict(color='#145214'), fillcolor='#196619'), # Dark green
-                                        decreasing=dict(line=dict(color='#7F0C0C'), fillcolor='#8F1D1D'))]) # Dark red)])
+                                        increasing=dict(line=dict(color='rgb(84, 232, 180)'),
+                                                    fillcolor='rgba(84, 232, 180, 1)'), # Solid green
+                                        decreasing=dict(line=dict(color='rgb(217, 48, 78)'),
+                                                    fillcolor='rgba(217, 48, 78, 1)'))]) # Solid red
 elif chart_type == 'OHLC Chart':
     fig = go.Figure(data=[go.Ohlc(x=data.index,
                                   open=data['Open'],
