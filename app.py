@@ -197,7 +197,7 @@ fig.update_layout(
     xaxis_rangeslider_visible=False,
     height=550
 )
-fig.update_xaxes(type='category') #showticklabels=False)
+#fig.update_xaxes(tickformat='%Y-%m-%d', type='category') #showticklabels=False)
 
 # Streamlit - Display the chart
 st.plotly_chart(fig, use_container_width=True)
