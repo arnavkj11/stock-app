@@ -75,7 +75,9 @@ st.markdown('<div style="text-align: justify; text-justify: inter-word;">&nbsp;&
 st.markdown('<div style="text-align: justify; text-justify: inter-word;"></div>', unsafe_allow_html=True)
 st.write(" ")
 st.write(" ")
+
 st.subheader("Moving Average Plot for Dow Jones Companies")
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">Behold the moving averages with our line chart, an exploration of trends over time. It\'s a mesmerizing journey, where stock prices take center stage alongside the graceful movements of 20-Day, 50-Day, and 100-Day averages. Select your company, adjust the slider, and witness the ebb and flow of market trends.</div>', unsafe_allow_html=True)
 
 company_list = [
     "AAPL", "AXP", "AMGN", "BA", "CAT", "CSCO", "CVX", "CRM", "DIS", "DOW", "GS", "HD", 
@@ -106,7 +108,15 @@ if selected_companies:
     fig.update_layout(title='Stock Prices and Moving Averages', xaxis_title='Date', yaxis_title='Price')
     st.plotly_chart(fig, use_container_width=True)
 
+st.write(" ")
+st.write(" ")
+
 st.subheader("Sectorial Comparision")
+st.markdown('<div style="text-align: justify; text-justify: inter-word;"><b>1. Stock Prices Comparison:</b></div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">Step into the rhythm of the market with our Multiline Graph, a dynamic dance of stock prices over time. Each line, a company, pirouettes through the timeline, offering a visual spectacle of their performance. Use the dropdown menu to select your sector of interest, and with a flick of the slider, traverse through the beats of the market.</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;"><b>2. Percentage Return Comparison:</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">Join the ensemble with our second Multiline Graph, choreographed to showcase the percentage returns of companies. It\'s a tale of relative performance, where each line tells a unique story. The dropdown and slider? They\'re your backstage passes, allowing you to orchestrate your analysis with finesse.</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;"></div>', unsafe_allow_html=True)
 
 sectors = {
     'Information Technology': ['AAPL', 'CRM', 'CSCO', 'IBM', 'INTC', 'MSFT', 'V'],
@@ -142,6 +152,8 @@ else:
     fig2.update_layout(title=f'{sector} Sector % Return Comparison', xaxis_title='Date')
     st.plotly_chart(fig2, use_container_width=True)
 
+st.write(" ")
+st.write(" ")
 #stock market dashboard
 st.subheader("Stock Market Dashboard")
 with st.sidebar:
@@ -181,3 +193,15 @@ fig.update_layout(
 
 # Streamlit - Display the chart
 st.plotly_chart(fig, use_container_width=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;"><b>1. Line Chart:</b></div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">Indulge in the solo performances of individual companies with our Line Chart. Each line narrates the story of a company\'s stock prices over time. Use the dropdown to choose your sector, select a company, and let the drama unfold. The tooltips? They\'re your backstage whispers, revealing the details with a simple hover.</div>', unsafe_allow_html=True)
+st.write(" ")
+st.write(" ")
+st.markdown('<div style="text-align: justify; text-justify: inter-word;"><b>2. Candlestick Chart and OHLC Chart: The Daily Drama Unveiled</b></div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;">Experience the daily drama with our Candlestick and OHLC Charts. The Candlestick? It\'s a visual feast, presenting daily open, close, high, and low prices. The OHLC? It\'s a detailed script, offering a comprehensive view. Choose your sector, select a company, and with a time range chosen by the slider, immerse yourself in the financial spectacle.</div>', unsafe_allow_html=True)
+st.write(" ")
+st.write("Here are some paterns for candlesticks chart and OHLC chart.")
+col1, col2, col3 = st.columns([1,6,1])
+with col2:
+    st.image('candlesticks_pattern.png', caption='Candlesticks Chart Patterns', output_format='PNG', width=800)
+st.markdown('<div style="text-align: justify; text-justify: inter-word;"></div>', unsafe_allow_html=True)
