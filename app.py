@@ -194,9 +194,10 @@ fig.update_layout(
     title=f'{selected_company} Share Price ({chart_type})',
     xaxis_title='Date',
     yaxis_title='Price (USD)',
-    xaxis_rangeslider_visible=False
+    xaxis_rangeslider_visible=False,
+    height=550
 )
-fig.update_xaxes(type='category', showticklabels=False)
+fig.update_xaxes(type='category') #showticklabels=False)
 
 # Streamlit - Display the chart
 st.plotly_chart(fig, use_container_width=True)
