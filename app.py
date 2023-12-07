@@ -181,11 +181,13 @@ elif chart_type == 'Candlestick Chart':
                                                     fillcolor='rgba(217, 48, 78, 1)'))]) # Solid red
 elif chart_type == 'OHLC Chart':
     fig = go.Figure(data=[go.Ohlc(x=data.index,
-                                  open=data['Open'],
-                                  high=data['High'],
-                                  low=data['Low'],
-                                  close=data['Close'],
-                                  name='OHLC')])
+                                open=data['Open'],
+                                high=data['High'],
+                                low=data['Low'],
+                                close=data['Close'],
+                                increasing_line_color= 'rgb(84, 232, 180)',
+                                decreasing_line_color= 'rgb(217, 48, 78)',
+                                name='OHLC')])
 
 # Update layout of the chart
 fig.update_layout(
@@ -194,6 +196,7 @@ fig.update_layout(
     yaxis_title='Price (USD)',
     xaxis_rangeslider_visible=False
 )
+fig.update_xaxes(type='category', showticklabels=False)
 
 # Streamlit - Display the chart
 st.plotly_chart(fig, use_container_width=True)
