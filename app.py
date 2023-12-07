@@ -171,10 +171,12 @@ if chart_type == 'Line Chart':
     fig = go.Figure(data=[go.Scatter(x=data.index, y=data['Close'])])
 elif chart_type == 'Candlestick Chart':
     fig = go.Figure(data=[go.Candlestick(x=data.index,
-                                         open=data['Open'],
-                                         high=data['High'],
-                                         low=data['Low'],
-                                         close=data['Close'])])
+                                        open=data['Open'],
+                                        high=data['High'],
+                                        low=data['Low'],
+                                        close=data['Close'],
+                                        increasing=dict(line=dict(color='#145214'), fillcolor='#196619'), # Dark green
+                                        decreasing=dict(line=dict(color='#7F0C0C'), fillcolor='#8F1D1D'))]) # Dark red)])
 elif chart_type == 'OHLC Chart':
     fig = go.Figure(data=[go.Ohlc(x=data.index,
                                   open=data['Open'],
